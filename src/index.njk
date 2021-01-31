@@ -1,0 +1,10 @@
+---
+layout: base
+eleventyNavigation:
+  key: Home
+---
+
+<div class="container">
+    {% set data = webmentions|analytics %}
+    <pre><code>{{ data|pprint }}</code></pre>
+</div>

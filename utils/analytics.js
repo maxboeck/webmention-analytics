@@ -1,6 +1,7 @@
 const URL = require('url-parse')
 const { orderBy, groupBy } = require('lodash')
 const { DateTime } = require('luxon')
+const { handles } = require('../src/data/meta.json')
 
 const EMPTY_COUNT_DATA = {
     'like-of': 0,
@@ -8,6 +9,10 @@ const EMPTY_COUNT_DATA = {
     'repost-of': 0,
     'mention-of': 0,
     'bookmark-of': 0
+}
+
+function escapeRegExp(str) {
+    return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
 }
 
 function sortEntries(obj) {
@@ -53,7 +58,11 @@ function parseEntries(data, range) {
 
     const targets = {}
     const sources = {}
+    const tweets = []
     const timeseries = makeTimeseries(range)
+
+    const handle = escapeRegExp(handles.twitter)
+    const tweetRegex = new RegExp(`/twitter/${handle}/(\\d+)/`)
 
     const addToSources = (name, type, url) => {
         if (!sources[name]) {
@@ -110,15 +119,32 @@ function parseEntries(data, range) {
         }
     }
 
+    const addToTweets = (url) => {
+        if (url && handles.twitter) {
+            const matches = url.match(tweetRegex)
+            if (matches && matches[1]) {
+                const tweetId = matches[1]
+                const tweetUrl = `https://twitter.com/${handle}/status/${tweetId}`
+                if (!tweets.includes(tweetUrl)) {
+                    tweets.push(tweetUrl)
+                }
+            }
+        }
+    }
+
     data.forEach((wm) => {
         const source = new URL(wm['wm-source'])
         const target = new URL(wm['wm-target'])
         const type = wm['wm-property']
 
+        addToCounts(type)
         addToSources(source.hostname, type, wm['wm-source'])
         addToTargets(target.pathname, type, wm['wm-source'])
         addToTimeSeries(wm['wm-received'], type)
-        addToCounts(type)
+
+        if (source.hostname.includes('brid-gy')) {
+            addToTweets(source.pathname)
+        }
     })
 
     return {
@@ -128,7 +154,8 @@ function parseEntries(data, range) {
         },
         sources: sortEntries(sources),
         targets: sortEntries(targets),
-        timeseries
+        timeseries,
+        tweets
     }
 }
 

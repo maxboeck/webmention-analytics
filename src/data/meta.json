@@ -1,8 +1,11 @@
 {
     "title": "Webmention Analytics",
-    "description": "webmention analytics",
+    "description": "Webmention analytics",
     "url": "https://mxb.dev",
     "lang": "en",
     "locale": "en_us",
-    "domain": "mxb.dev"
+    "domain": "mxb.dev",
+    "handles": {
+        "twitter": "mxbck"
+    }
 }

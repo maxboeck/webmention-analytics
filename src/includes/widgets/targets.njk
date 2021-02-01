@@ -1,6 +1,6 @@
 <div>
     {% if report.data.targets %}
-        Top Targets:
+        <h3>Top Targets</h3>
         <table>
         {% for target in report.data.targets|slice(0, 5) %}
             <tr>
@@ -11,11 +11,11 @@
                         <a href="{{ meta.url }}{{ target.title }}">{{ target.title }}</a>
                     {% endif %}
                 </th>
-                <td>{{ target.count['like-of'] }} Likes</td>
-                <td>{{ target.count['in-reply-to'] }} Replies</td>
-                <td>{{ target.count['repost-of'] }} Reposts</td>
-                <td>{{ target.count['mention-of'] }} Mentions</td>
-                <td>{{ target.count['bookmark-of'] }} Bookmarks</td>
+                <td>{% icon "like" %} {{ target.count['like-of'] }} <span class="sr-only">Likes</span></td>
+                <td>{% icon "reply" %} {{ target.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
+                <td>{% icon "repost" %} {{ target.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
+                <td>{% icon "mention" %} {{ target.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
+                <td>{% icon "bookmark" %} {{ target.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
             </tr>
         {% endfor %}
         </table>

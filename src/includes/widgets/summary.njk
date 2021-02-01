@@ -1,10 +1,12 @@
 <div>
     {% if report.data.count %}
-        <strong>{{ report.data.count.total }} Reactions total</strong><br />
-        {{ report.data.count['like-of'] }} Likes<br />
-        {{ report.data.count['in-reply-to'] }} Replies<br />
-        {{ report.data.count['repost-of'] }} Reposts<br />
-        {{ report.data.count['mention-of'] }} Mentions<br />
-        {{ report.data.count['bookmark-of'] }} Bookmarks
+        <h3>Summary</h3>
+        
+        <p><strong>{{ report.data.count.total }} Total Reactions</strong></p>
+        <p>{% icon "like" %} {{ report.data.count['like-of'] }} Likes</p>
+        <p>{% icon "reply" %} {{ report.data.count['in-reply-to'] }} Replies</p>
+        <p>{% icon "repost" %} {{ report.data.count['repost-of'] }} Reposts</p>
+        <p>{% icon "mention" %} {{ report.data.count['mention-of'] }} Mentions</p>
+        <p>{% icon "bookmark" %} {{ report.data.count['bookmark-of'] }} Bookmarks</p>
     {% endif %}
 </div>

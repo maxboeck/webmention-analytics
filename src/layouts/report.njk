@@ -8,8 +8,8 @@ layout: base
 
     {% include "widgets/timeseries.njk" %}
     {% include "widgets/summary.njk" %}
-    {% include "widgets/targets.njk" %}
     {% include "widgets/sources.njk" %}
+    {% include "widgets/targets.njk" %}
 
-    {# <pre><code>{{ report|pprint|safe }}</code></pre> #}
+    <pre><code>{{ report|pprint|safe }}</code></pre>
 </div>

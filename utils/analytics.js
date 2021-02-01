@@ -2,6 +2,14 @@ const URL = require('url-parse')
 const { orderBy, groupBy } = require('lodash')
 const { DateTime } = require('luxon')
 
+const EMPTY_COUNT_DATA = {
+    'like-of': 0,
+    'in-reply-to': 0,
+    'repost-of': 0,
+    'mention-of': 0,
+    'bookmark-of': 0
+}
+
 function sortEntries(obj) {
     const list = Object.keys(obj).map((key) => ({
         title: key,
@@ -18,13 +26,7 @@ function sortEntries(obj) {
 
 function parseEntries(data) {
     const totalCount = data.length
-    const typeCount = {
-        'like-of': 0,
-        'in-reply-to': 0,
-        'repost-of': 0,
-        'mention-of': 0,
-        'bookmark-of': 0
-    }
+    const typeCount = Object.assign({}, EMPTY_COUNT_DATA)
 
     const targets = {}
     const sources = {}
@@ -32,7 +34,7 @@ function parseEntries(data) {
     const addSource = (name, type, url) => {
         if (!sources[name]) {
             sources[name] = {
-                count: {},
+                count: Object.assign({}, EMPTY_COUNT_DATA),
                 urls: []
             }
         }
@@ -49,7 +51,7 @@ function parseEntries(data) {
     const addTarget = (name, type, url) => {
         if (!targets[name]) {
             targets[name] = {
-                count: {},
+                count: Object.assign({}, EMPTY_COUNT_DATA),
                 urls: []
             }
         }

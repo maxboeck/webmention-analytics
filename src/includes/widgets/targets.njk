@@ -1,8 +1,23 @@
 <div>
     {% if report.data.targets %}
         Top Targets:
-        {% for target in report.data.targets|slice(0, 3) %}
-            {{ target.title }}
+        <table>
+        {% for target in report.data.targets|slice(0, 5) %}
+            <tr>
+                <th scope="row">
+                    {% if target.title == "/" %}
+                        <a href="{{ meta.url }}">{{ meta.domain }}</a>
+                    {% else %}
+                        <a href="{{ meta.url }}{{ target.title }}">{{ target.title }}</a>
+                    {% endif %}
+                </th>
+                <td>{{ target.count['like-of'] }} Likes</td>
+                <td>{{ target.count['in-reply-to'] }} Replies</td>
+                <td>{{ target.count['repost-of'] }} Reposts</td>
+                <td>{{ target.count['mention-of'] }} Mentions</td>
+                <td>{{ target.count['bookmark-of'] }} Bookmarks</td>
+            </tr>
         {% endfor %}
+        </table>
     {% endif %}
 </div>

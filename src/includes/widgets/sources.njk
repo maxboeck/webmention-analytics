@@ -1,0 +1,27 @@
+<div>
+    {% if report.data.sources %}
+        Top Sources:
+        <table>
+        {% for source in report.data.sources|slice(0, 5) %}
+            <tr>
+                <th scope="row">
+                    {% if source.urls.length > 1 %}
+                        {% if source.title == "brid-gy.appspot.com" %}
+                            <a href="https://brid.gy/">brid.gy</a>
+                        {% else %}
+                            {{ source.title }}
+                        {% endif %} 
+                    {% else %}
+                        <a href="{{ source.urls[0] }}">{{ source.title }}</a>
+                    {% endif %}
+                </th>
+                <td>{{ source.count['like-of'] }} Likes</td>
+                <td>{{ source.count['in-reply-to'] }} Replies</td>
+                <td>{{ source.count['repost-of'] }} Reposts</td>
+                <td>{{ source.count['mention-of'] }} Mentions</td>
+                <td>{{ source.count['bookmark-of'] }} Bookmarks</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+</div>

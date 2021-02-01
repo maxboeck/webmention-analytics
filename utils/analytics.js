@@ -98,20 +98,20 @@ function groupByMonth(data) {
 }
 
 module.exports = function (webmentions) {
-    const grouped = groupByMonth(webmentions.children)
+    const grouped = groupByMonth(webmentions)
     const dataByMonth = Object.keys(grouped).map((slug) => {
-        const analytics = parseEntries(grouped[slug])
-        const date = DateTime.fromISO(slug)
+        const data = parseEntries(grouped[slug])
+        const month = DateTime.fromISO(slug)
 
-        const title = date.toFormat('MMMM yyyy')
-        const from = date.startOf('month').toISODate()
-        const to = date.endOf('month').toISODate()
+        const title = month.toFormat('MMMM yyyy')
+        const from = month.startOf('month').toISODate()
+        const to = month.endOf('month').toISODate()
         return {
             title,
             slug,
             from,
             to,
-            analytics
+            data
         }
     })
 

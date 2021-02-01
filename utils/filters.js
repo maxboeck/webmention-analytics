@@ -14,6 +14,10 @@ module.exports = {
         })
     },
 
+    dateFromISO: function (timestamp) {
+        return DateTime.fromISO(timestamp, { zone: 'utc' }).toJSDate()
+    },
+
     obfuscate: function (str) {
         const chars = []
         for (var i = str.length - 1; i >= 0; i--) {

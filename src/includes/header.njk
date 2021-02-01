@@ -1,10 +1,11 @@
 <header class="header" role="banner">
     <div class="header__inner container">
         <div class="header__left">
-            🎩 Eleventastic
+            📊 Webmention Analytics
         </div>
         <div class="header__right">
-            {% include "navigation.njk" %}
+            {% set lastFetchedDate = webmentions.lastFetched|dateFromISO %}
+            Last Fetched: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy HH:mm") }}
         </div>
     </div>
 </header>

@@ -1,0 +1,12 @@
+---
+layout: base
+---
+
+{% set reports = webmentions.children|analytics %}
+<div class="container">
+    <ol reversed>
+    {% for report in reports %}
+        <li><a href="/{{report.slug}}/">{{ report.title }}</a></li>
+    {% endfor %}
+    </ol>
+</div>

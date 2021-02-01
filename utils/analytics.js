@@ -24,14 +24,34 @@ function sortEntries(obj) {
     return orderBy(list, [getTotalCount, getTitle], ['desc', 'asc'])
 }
 
-function parseEntries(data) {
+function makeTimeseries(range) {
+    const labels = []
+    const values = []
+    const initialValues = Object.keys(EMPTY_COUNT_DATA).map(() => 0)
+
+    labels.length = range
+    values.length = range
+
+    values.fill(initialValues)
+    for (let i = 0; i < labels.length; i++) {
+        labels[i] = i + 1
+    }
+
+    return {
+        labels,
+        values
+    }
+}
+
+function parseEntries(data, range) {
     const totalCount = data.length
     const typeCount = Object.assign({}, EMPTY_COUNT_DATA)
 
     const targets = {}
     const sources = {}
+    const timeseries = makeTimeseries(range)
 
-    const addSource = (name, type, url) => {
+    const addToSources = (name, type, url) => {
         if (!sources[name]) {
             sources[name] = {
                 count: Object.assign({}, EMPTY_COUNT_DATA),
@@ -48,7 +68,7 @@ function parseEntries(data) {
         }
     }
 
-    const addTarget = (name, type, url) => {
+    const addToTargets = (name, type, url) => {
         if (!targets[name]) {
             targets[name] = {
                 count: Object.assign({}, EMPTY_COUNT_DATA),
@@ -65,9 +85,24 @@ function parseEntries(data) {
         }
     }
 
-    const addCount = (type) => {
+    const addToCounts = (type) => {
         if (typeof typeCount[type] === 'number') {
             typeCount[type] = typeCount[type] + 1
+        }
+    }
+
+    const addToTimeSeries = (timestamp, type) => {
+        if (timestamp) {
+            const day = parseInt(DateTime.fromISO(timestamp).toFormat('d'))
+            const values = [...timeseries.values[day - 1]]
+            const index = Object.keys(EMPTY_COUNT_DATA).findIndex(
+                (t) => t === type
+            )
+
+            if (index > -1) {
+                values[index]++
+                timeseries.values[day - 1] = values
+            }
         }
     }
 
@@ -76,9 +111,10 @@ function parseEntries(data) {
         const target = new URL(wm['wm-target'])
         const type = wm['wm-property']
 
-        addSource(source.hostname, type, wm['wm-source'])
-        addTarget(target.pathname, type, wm['wm-source'])
-        addCount(type)
+        addToSources(source.hostname, type, wm['wm-source'])
+        addToTargets(target.pathname, type, wm['wm-source'])
+        addToTimeSeries(wm['wm-received'], type)
+        addToCounts(type)
     })
 
     return {
@@ -87,7 +123,8 @@ function parseEntries(data) {
             ...typeCount
         },
         sources: sortEntries(sources),
-        targets: sortEntries(targets)
+        targets: sortEntries(targets),
+        timeseries
     }
 }
 
@@ -103,12 +140,13 @@ function groupByMonth(data) {
 module.exports = function (webmentions) {
     const grouped = groupByMonth(webmentions)
     const dataByMonth = Object.keys(grouped).map((slug) => {
-        const data = parseEntries(grouped[slug])
         const month = DateTime.fromISO(slug)
-
         const title = month.toFormat('MMMM yyyy')
         const from = month.startOf('month').toISODate()
         const to = month.endOf('month').toISODate()
+        const range = parseInt(month.endOf('month').toFormat('d'), 10)
+
+        const data = parseEntries(grouped[slug], range)
         return {
             title,
             slug,

@@ -1,0 +1,5 @@
+<div>
+    {% if report.data.timeseries %}
+        {% barchart report.data.timeseries, report.slug %}
+    {% endif %}
+</div>

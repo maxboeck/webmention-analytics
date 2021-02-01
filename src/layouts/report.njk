@@ -6,6 +6,7 @@ layout: base
     <h1>{{ report.title }}</h1>
     <p>{{ report.from }} to {{ report.to }}</p>
 
+    {% include "widgets/timeseries.njk" %}
     {% include "widgets/summary.njk" %}
     {% include "widgets/targets.njk" %}
     {% include "widgets/sources.njk" %}

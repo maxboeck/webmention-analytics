@@ -1,7 +1,7 @@
 const { DateTime } = require('luxon')
 
 module.exports = {
-    dateToFormat: function (date, format) {
+    dateToFormat: function (date, format = 'dd.MM.yyyy') {
         return DateTime.fromJSDate(date, { zone: 'utc' }).toFormat(
             String(format)
         )
@@ -28,5 +28,9 @@ module.exports = {
 
     pprint: function (obj) {
         return JSON.stringify(obj, null, 2)
+    },
+
+    slice: function (arr, start, end) {
+        return end ? arr.slice(start, end) : arr.slice(start)
     }
 }

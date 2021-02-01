@@ -4,5 +4,10 @@ layout: base
 
 <div class="container">
     <h1>{{ report.title }}</h1>
-    <pre><code>{{ report | pprint | safe }}</code></pre>
+    <p>{{ report.from }} to {{ report.to }}</p>
+
+    {% include "widgets/summary.njk" %}
+    {% include "widgets/targets.njk" %}
+
+    <pre><code>{{ report|pprint|safe }}</code></pre>
 </div>

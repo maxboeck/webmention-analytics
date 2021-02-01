@@ -6,7 +6,10 @@ layout: base
 <div class="container">
     <ol reversed>
     {% for report in reports %}
-        <li><a href="/{{report.slug}}/">{{ report.title }}</a></li>
+        <li>
+            <h2><a href="/{{report.slug}}/">{{ report.title }}</a></h2>
+            {% include "widgets/summary.njk" %}
+        </li>
     {% endfor %}
     </ol>
 </div>

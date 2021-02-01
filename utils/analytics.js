@@ -22,6 +22,7 @@ function parseEntries(data) {
         'like-of': 0,
         'in-reply-to': 0,
         'repost-of': 0,
+        'mention-of': 0,
         'bookmark-of': 0
     }
 

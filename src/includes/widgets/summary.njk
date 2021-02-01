@@ -1,0 +1,10 @@
+<div>
+    {% if report.data.count %}
+        <strong>{{ report.data.count.total }} Reactions total</strong><br />
+        {{ report.data.count['like-of'] }} Likes<br />
+        {{ report.data.count['in-reply-to'] }} Replies<br />
+        {{ report.data.count['repost-of'] }} Reposts<br />
+        {{ report.data.count['mention-of'] }} Mentions<br />
+        {{ report.data.count['bookmark-of'] }} Bookmarks
+    {% endif %}
+</div>

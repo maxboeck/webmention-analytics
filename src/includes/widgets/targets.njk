@@ -1,0 +1,8 @@
+<div>
+    {% if report.data.targets %}
+        Top Targets:
+        {% for target in report.data.targets|slice(0, 3) %}
+            {{ target.title }}
+        {% endfor %}
+    {% endif %}
+</div>

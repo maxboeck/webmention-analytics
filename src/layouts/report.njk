@@ -12,5 +12,5 @@ layout: base
     {% include "widgets/targets.njk" %}
     {% include "widgets/tweets.njk" %}
 
-    {# <pre><code>{{ report.data|pprint|safe }}</code></pre> #}
+    <pre><code>{{ report.data.tweets|pprint|safe }}</code></pre>
 </div>

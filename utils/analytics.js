@@ -47,15 +47,12 @@ function makeTimeseries(range) {
 
     return {
         labels,
-        series,
-        legend
+        series
     }
 }
 
 function parseEntries(data, range) {
-    const totalCount = data.length
-    const typeCount = Object.assign({}, EMPTY_COUNT_DATA)
-
+    const counts = Object.assign({}, { total: data.length }, EMPTY_COUNT_DATA)
     const targets = {}
     const sources = {}
     const tweets = {}
@@ -99,8 +96,8 @@ function parseEntries(data, range) {
     }
 
     const addToCounts = (type) => {
-        if (typeof typeCount[type] === 'number') {
-            typeCount[type] = typeCount[type] + 1
+        if (typeof counts[type] === 'number') {
+            counts[type] = counts[type] + 1
         }
     }
 
@@ -152,10 +149,7 @@ function parseEntries(data, range) {
     })
 
     return {
-        count: {
-            total: totalCount,
-            ...typeCount
-        },
+        count: counts,
         sources: sortEntries(sources),
         targets: sortEntries(targets),
         tweets: sortEntries(tweets),

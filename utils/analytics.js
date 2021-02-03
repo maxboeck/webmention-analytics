@@ -58,7 +58,7 @@ function parseEntries(data, range) {
 
     const targets = {}
     const sources = {}
-    const tweets = []
+    const tweets = {}
     const timeseries = makeTimeseries(range)
 
     const handle = escapeRegExp(handles.twitter)
@@ -119,14 +119,18 @@ function parseEntries(data, range) {
         }
     }
 
-    const addToTweets = (url) => {
-        if (url && handles.twitter) {
-            const matches = url.match(tweetRegex)
-            if (matches && matches[1]) {
-                const tweetId = matches[1]
-                const tweetUrl = `https://twitter.com/${handle}/status/${tweetId}`
-                if (!tweets.includes(tweetUrl)) {
-                    tweets.push(tweetUrl)
+    const addToTweets = (url, type) => {
+        const matches = url.match(tweetRegex)
+        if (matches && matches[1]) {
+            const tweetId = matches[1]
+            if (tweets[tweetId]) {
+                tweets[tweetId]['count'][type]++
+            } else {
+                const initialCount = Object.assign({}, EMPTY_COUNT_DATA, {
+                    [type]: 1
+                })
+                tweets[tweetId] = {
+                    count: initialCount
                 }
             }
         }
@@ -143,7 +147,7 @@ function parseEntries(data, range) {
         addToTimeSeries(wm['wm-received'], type)
 
         if (source.hostname.includes('brid-gy')) {
-            addToTweets(source.pathname)
+            addToTweets(source.pathname, type)
         }
     })
 
@@ -154,8 +158,8 @@ function parseEntries(data, range) {
         },
         sources: sortEntries(sources),
         targets: sortEntries(targets),
-        timeseries,
-        tweets
+        tweets: sortEntries(tweets),
+        timeseries
     }
 }
 

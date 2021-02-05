@@ -11,7 +11,7 @@
         </div>
         <div class="header__right">
             {% set lastFetchedDate = webmentions.lastFetched|dateFromISO %}
-            Last Fetched: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy HH:mm") }}
+            Last Fetched: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy - HH:mm") }}
         </div>
     </div>
 </header>

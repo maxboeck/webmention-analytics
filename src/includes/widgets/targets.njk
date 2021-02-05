@@ -1,6 +1,6 @@
 <div class="widget widget--targets">
     {% if report.data.targets.length %}
-        <h3>Top Targets</h3>
+        <h3 class="widget__title">Top Targets</h3>
         <table class="table">
         {% for target in report.data.targets|slice(0, 5) %}
             <tr>

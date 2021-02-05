@@ -1,6 +1,6 @@
 <div class="widget widget--sources">
     {% if report.data.sources.length %}
-        <h3>Top Sources</h3>
+        <h3 class="widget__title">Top Sources</h3>
         <table class="table">
         {% for source in report.data.sources|slice(0, 5) %}
             <tr>

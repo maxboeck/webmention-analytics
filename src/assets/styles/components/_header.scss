@@ -6,4 +6,28 @@
         justify-content: space-between;
         align-items: center;
     }
+
+    &__logo,
+    &__logo a {
+        display: flex;
+        align-items: center;
+    }
+
+    &__logo a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    &__logo svg {
+        margin-right: 0.5rem;
+        path {
+            fill: currentColor;
+        }
+    }
+
+    &__domain {
+        padding-left: 0.5rem;
+        margin-left: 0.5rem;
+        border-left: 1px solid;
+    }
 }

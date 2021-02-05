@@ -1,7 +1,7 @@
 .footer {
     font-size: 0.875rem;
     padding: $spacing-y 0;
-    background-color: $gray-lightest;
+    background-color: darken($bg-color, 5%);
 
     &__inner {
         display: flex;

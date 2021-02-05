@@ -1,23 +1,25 @@
-<div>
-    {% if report.data.targets %}
+<div class="widget widget--targets">
+    {% if report.data.targets.length %}
         <h3>Top Targets</h3>
-        <table>
+        <table class="table">
         {% for target in report.data.targets|slice(0, 5) %}
             <tr>
                 <th scope="row">
                     {% if target.title == "/" %}
-                        <a href="{{ meta.url }}">{{ meta.domain }}</a>
+                        <a href="{{ meta.url }}" class="u-truncate">{{ meta.domain }}</a>
                     {% else %}
-                        <a href="{{ meta.url }}{{ target.title }}">{{ target.title }}</a>
+                        <a href="{{ meta.url }}{{ target.title }}" class="u-truncate">{{ target.title }}</a>
                     {% endif %}
                 </th>
-                <td>{% icon "like" %} {{ target.count['like-of'] }} <span class="sr-only">Likes</span></td>
-                <td>{% icon "reply" %} {{ target.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
-                <td>{% icon "repost" %} {{ target.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
-                <td>{% icon "mention" %} {{ target.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
-                <td>{% icon "bookmark" %} {{ target.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
+                <td><span class="u-color-likes">{% icon "like" %}</span> {{ target.count['like-of'] }} <span class="sr-only">Likes</span></td>
+                <td><span class="u-color-replies">{% icon "reply" %}</span> {{ target.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
+                <td><span class="u-color-reposts">{% icon "repost" %}</span> {{ target.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
+                <td><span class="u-color-mentions">{% icon "mention" %}</span> {{ target.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
+                <td><span class="u-color-bookmarks">{% icon "bookmark" %}</span> {{ target.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
             </tr>
         {% endfor %}
         </table>
+    {% else %}
+        <p>No targets found yet.</p>
     {% endif %}
 </div>

@@ -1,0 +1,12 @@
+.summary {
+    table-layout: fixed;
+
+    tbody td {
+        width: 16%;
+        text-align: right;
+    }
+    tbody td:first-child {
+        width: 20%;
+        text-align: left;
+    }
+}

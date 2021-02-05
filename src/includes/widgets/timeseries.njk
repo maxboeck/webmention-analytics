@@ -1,5 +1,9 @@
-<div style="min-height: 300px">
-    {% if report.data.timeseries %}
-        {% barchart report.data.timeseries, report.slug %}
-    {% endif %}
+{% if report.data.timeseries %}
+<div class="widget widget--timeseries">
+    <div style="min-height: 300px">
+        {% if report.data.timeseries %}
+            {% barchart report.data.timeseries, report.slug %}
+        {% endif %}
+    </div>
 </div>
+{% endif %}

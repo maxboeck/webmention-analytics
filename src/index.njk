@@ -8,7 +8,6 @@ layout: base
     {% for report in reports %}
         <li>
             <h2><a href="/{{report.slug}}/">{{ report.title }}</a></h2>
-            {% include "widgets/timeseries.njk" %}
             {% include "widgets/summary.njk" %}
         </li>
     {% endfor %}

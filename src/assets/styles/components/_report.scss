@@ -1,0 +1,25 @@
+.report {
+    &__header {
+        margin-bottom: 2rem;
+    }
+    &__time {
+        letter-spacing: 1px;
+    }
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+        @include mq(lg) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    &__item {
+        display: flex;
+        flex-direction: column;
+
+        &--fullwidth {
+            grid-column: 1 / -1;
+        }
+    }
+}

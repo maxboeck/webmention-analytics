@@ -1,1 +1,28 @@
+$ct-grid-color: rgba($gray-lightest, 0.45) !default;
+$ct-text-color: $gray-lightest;
+
+$ct-series-colors: (
+    $color-likes,
+    $color-replies,
+    $color-reposts,
+    $color-mentions,
+    $color-bookmarks,
+    #59922b,
+    #0544d3,
+    #6b0392,
+    #f05b4f,
+    #dda458,
+    #eacf7d,
+    #86797d,
+    #b2c326,
+    #6188e2,
+    #a748ca
+);
+
+.ct-chart-bar .ct-bar {
+    @include mq(lg) {
+        stroke-width: 20px;
+    }
+}
+
 @import '../../../../node_modules/chartist/dist/scss/chartist.scss';

@@ -1,15 +1,17 @@
-<div>
-    {% if report.data.tweets %}
+<div class="widget widget--tweets">
+    {% if report.data.tweets.length %}
         <h3>Top Tweets</h3>
-        <ol>
+        <ol class="tweetlist">
         {% for tweet in report.data.tweets|slice(0, 3) %}
-            <li>
-                <blockquote class="twitter-tweet">
+            <li class="tweetlist__item">
+                <blockquote class="twitter-tweet" data-theme="dark">
                     <a href="https://twitter.com/{{ meta.handles.twitter }}/status/{{ tweet.title }}">{{ tweet.title }}</a>
                 </blockquote> 
             </li>
         {% endfor %}
         </ol>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    {% else %}
+        <p>No tweets found yet.</p>
     {% endif %}
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>

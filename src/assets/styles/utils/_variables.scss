@@ -28,11 +28,11 @@ $z-layers: (
 //
 // Grayscale.
 
-$gray-darkest: #373a3c;
+$gray-darkest: #2e3440;
 $gray-dark: #55595c;
 $gray: #818a91;
 $gray-light: #eceeef;
-$gray-lightest: #f7f7f9;
+$gray-lightest: #e6e9ee;
 
 // Brand Colors
 
@@ -40,8 +40,8 @@ $brand-red: #fc6767;
 
 // Color Mappings
 
-$bg-color: #fff;
-$text-color: $gray-darkest;
+$bg-color: $gray-darkest;
+$text-color: $gray-lightest;
 $brand-color-primary: $brand-red;
 $brand-color-primary-offset: darken($brand-red, 6%);
 
@@ -79,5 +79,10 @@ $spacing-y: 2rem;
 
 $box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
 $box-shadow-elevated: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
-
 $border-radius: 0.25rem;
+
+$color-likes: #dc3977;
+$color-replies: #f0746e;
+$color-reposts: #7ccba2;
+$color-mentions: #00bff8;
+$color-bookmarks: #7c1d6f;

@@ -1,12 +1,28 @@
-<div>
-    {% if report.data.count %}
-        <h3>Summary</h3>
-        
-        <p><strong>{{ report.data.count.total }} Total Reactions</strong></p>
-        <p>{% icon "like" %} {{ report.data.count['like-of'] }} Likes</p>
-        <p>{% icon "reply" %} {{ report.data.count['in-reply-to'] }} Replies</p>
-        <p>{% icon "repost" %} {{ report.data.count['repost-of'] }} Reposts</p>
-        <p>{% icon "mention" %} {{ report.data.count['mention-of'] }} Mentions</p>
-        <p>{% icon "bookmark" %} {{ report.data.count['bookmark-of'] }} Bookmarks</p>
-    {% endif %}
+{% if report.data.count %}
+<div class="widget widget--summary">
+    <h3 class="sr-only">Summary</h3>
+    <table class="summary">
+        <thead class="sr-only">
+            <tr>
+                <th>Total</th>
+                <th>Likes</th>
+                <th>Replies</th>
+                <th>Reposts</th>
+                <th>Mentions</th>
+                <th>Bookmarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>{{ report.data.count.total }} Webmentions</strong></td>
+                <td><span class="u-color-likes">{% icon "like" %}</span> {{ report.data.count['like-of'] }} Likes</td>
+                <td><span class="u-color-replies">{% icon "reply" %}</span>  {{ report.data.count['in-reply-to'] }} Replies</td>
+                <td><span class="u-color-reposts">{% icon "repost" %}</span>  {{ report.data.count['repost-of'] }} Reposts</td>
+                <td><span class="u-color-mentions">{% icon "mention" %}</span>  {{ report.data.count['mention-of'] }} Mentions</td>
+                <td><span class="u-color-bookmarks">{% icon "bookmark" %}</span>  {{ report.data.count['bookmark-of'] }} Bookmarks</td>
+            </tr>
+        </tbody>
+    </table>
+    
 </div>
+{% endif %}

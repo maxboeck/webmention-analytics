@@ -3,14 +3,35 @@ layout: base
 ---
 
 <div class="container">
-    <h1>{{ report.title }}</h1>
-    <p>{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
 
-    {% include "widgets/timeseries.njk" %}
-    {% include "widgets/summary.njk" %}
-    {% include "widgets/sources.njk" %}
-    {% include "widgets/targets.njk" %}
-    {% include "widgets/tweets.njk" %}
+    <article class="report">
+        <header class="report__header">
+            <h1 class="report__title">{{ report.title }}</h1>
+            <p class="report__time">{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
+        </header>
 
-    <pre><code>{{ report.data.tweets|pprint|safe }}</code></pre>
+        <div class="report__content">
+            <div class="report__item report__item--fullwidth">
+                {% include "widgets/timeseries.njk" %}
+            </div>
+
+            <div class="report__item report__item--fullwidth">
+                {% include "widgets/summary.njk" %}
+            </div>
+
+            <div class="report__item">
+                {% include "widgets/sources.njk" %}
+            </div>
+
+            <div class="report__item">
+                {% include "widgets/targets.njk" %}
+            </div>
+
+            <div class="report__item report__item--fullwidth">
+                {% include "widgets/tweets.njk" %}
+            </div>
+        </div>
+    </article>
+
+    {# <pre><code>{{ report.data.tweets|pprint|safe }}</code></pre> #}
 </div>

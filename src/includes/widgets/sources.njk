@@ -1,27 +1,29 @@
-<div>
-    {% if report.data.sources %}
+<div class="widget widget--sources">
+    {% if report.data.sources.length %}
         <h3>Top Sources</h3>
-        <table>
+        <table class="table">
         {% for source in report.data.sources|slice(0, 5) %}
             <tr>
                 <th scope="row">
                     {% if source.urls.length > 1 %}
                         {% if source.title == "brid-gy.appspot.com" %}
-                            <a href="https://brid.gy/">brid.gy</a>
+                            <a href="https://brid.gy/" class="u-truncate">brid.gy</a>
                         {% else %}
-                            {{ source.title }}
+                            <span class="u-truncate">{{ source.title }}</a>
                         {% endif %} 
                     {% else %}
-                        <a href="{{ source.urls[0] }}">{{ source.title }}</a>
+                        <a href="{{ source.urls[0] }}" class="u-truncate">{{ source.title }}</a>
                     {% endif %}
                 </th>
-                <td>{% icon "like" %} {{ source.count['like-of'] }} <span class="sr-only">Likes</span></td>
-                <td>{% icon "reply" %} {{ source.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
-                <td>{% icon "repost" %} {{ source.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
-                <td>{% icon "mention" %} {{ source.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
-                <td>{% icon "bookmark" %} {{ source.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
+                <td><span class="u-color-likes">{% icon "like" %}</span> {{ source.count['like-of'] }} <span class="sr-only">Likes</span></td>
+                <td><span class="u-color-replies">{% icon "reply" %}</span> {{ source.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
+                <td><span class="u-color-reposts">{% icon "repost" %}</span> {{ source.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
+                <td><span class="u-color-mentions">{% icon "mention" %}</span> {{ source.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
+                <td><span class="u-color-bookmarks">{% icon "bookmark" %}</span> {{ source.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
             </tr>
         {% endfor %}
         </table>
+    {% else %}
+        <p>No sources found yet.</p>
     {% endif %}
 </div>

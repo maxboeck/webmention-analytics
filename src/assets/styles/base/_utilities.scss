@@ -69,3 +69,21 @@
         display: none !important;
     }
 }
+
+// Color Utils
+
+.u-color-likes {
+    color: $color-likes;
+}
+.u-color-replies {
+    color: $color-replies;
+}
+.u-color-reposts {
+    color: $color-reposts;
+}
+.u-color-mentions {
+    color: $color-mentions;
+}
+.u-color-bookmarks {
+    color: $color-bookmarks;
+}

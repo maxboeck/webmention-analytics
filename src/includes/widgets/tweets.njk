@@ -1,5 +1,5 @@
 <div class="widget widget--tweets">
-    <h3 class="widget__title">Top Tweets</h3>
+    <h2 class="widget__title">Top Tweets</h2>
     {% if report.data.tweets.length %}
         <ol class="tweetlist">
         {% for tweet in report.data.tweets|slice(0, 4) %}

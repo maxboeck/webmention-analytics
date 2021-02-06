@@ -4,8 +4,5 @@
     "url": "https://mxb.dev",
     "lang": "en",
     "locale": "en_us",
-    "domain": "mxb.dev",
-    "handles": {
-        "twitter": "mxbck"
-    }
+    "domain": "mxb.dev"
 }

@@ -1,13 +1,18 @@
 import Chartist from 'chartist'
+import 'chartist-plugin-tooltips'
 
 const SELECTORS = {
     chartContainer: '.js-chart-container'
 }
 
 function generateBarChart(element, { labels, series }) {
+    const tooltip = new Chartist.plugins.tooltip({
+        anchorToPoint: true
+    })
     const options = {
         stackBars: true,
-        height: 300
+        height: 300,
+        plugins: [tooltip]
     }
     return new Chartist.Bar(element, { labels, series }, options)
 }

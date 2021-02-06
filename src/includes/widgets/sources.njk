@@ -1,6 +1,6 @@
 <div class="widget widget--sources">
     {% if report.data.sources.length %}
-        <h3 class="widget__title">Top Sources</h3>
+        <h2 class="widget__title">Top Sources</h2>
         {% set tabledata = report.data.sources %}
         {% include "table.njk" %}
     {% else %}

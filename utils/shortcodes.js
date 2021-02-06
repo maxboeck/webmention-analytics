@@ -7,7 +7,7 @@ module.exports = {
 
     barchart: function (data, id) {
         const json = JSON.stringify(data)
-        return `<div class="js-chart-container" data-source="chart-data-${id}"></div>
+        return `<div class="chartcontainer js-chart-container" data-source="chart-data-${id}"></div>
                 <script type="application/json" id="chart-data-${id}">${json}</script>`
     }
 }

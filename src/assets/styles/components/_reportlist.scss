@@ -28,6 +28,10 @@
         padding: 0;
         border: 0;
 
+        &__title {
+            display: none;
+        }
+
         &--timeseries {
             margin-left: -1rem;
             margin-right: -1rem;

@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/maxboeck/eleventastic"
+    "url": "https://github.com/maxboeck/webmention-analytics"
   },
   "author": "Max Böck",
   "license": "MIT",

@@ -46,13 +46,21 @@ module.exports = {
                 a: ['href']
             }
         }
+        const excerpt = (html, limit) => {
+            const stripped = sanitizeHTML(html, {
+                allowedTags: [],
+                allowedAttributes: {}
+            })
+            return stripped.substr(0, limit) + '...'
+        }
+
         const clean = (entry) => {
             const { html, text } = entry.content
             if (html) {
                 // really long html mentions, usually newsletters or compilations
                 entry.content.value =
-                    html.length > 2000
-                        ? `mentioned this in <a href="${entry['wm-source']}" rel="noindex nofollow">${entry['wm-source']}</a>`
+                    html.length > 1500
+                        ? excerpt(html, 150) + ' [content truncated]'
                         : sanitizeHTML(html, allowedHTML)
             } else {
                 entry.content.value = sanitizeHTML(text, allowedHTML)

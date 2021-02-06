@@ -1,9 +1,10 @@
 <div class="widget">
-    <h3 class="widget__title">Flagged as spam</h3>
+    <h2 class="widget__title">Flagged as spam</h2>
     {% if report.data.flagged.length %}
         <ol class="webmentionlist">
         {% for entry in report.data.flagged %}
             <li class="webmentionlist__item">
+                <span class="webmentionlist__blockinfo">Domain on blocklist: {{ entry.blockedDomain }}</span>
                 {% set webmention = entry|cleanWebmention %}
                 {% include 'webmention.njk' %}
             </li>

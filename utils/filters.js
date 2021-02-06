@@ -1,4 +1,6 @@
 const { DateTime } = require('luxon')
+const URL = require('url-parse')
+const { orderBy } = require('lodash')
 
 module.exports = {
     dateToFormat: function (date, format = 'dd.MM.yyyy') {
@@ -18,6 +20,24 @@ module.exports = {
         return DateTime.fromISO(timestamp, { zone: 'utc' }).toJSDate()
     },
 
+    commonURL: function (urls) {
+        if (urls.length === 1) {
+            return urls[0]
+        }
+        const urlmap = {}
+        urls.forEach((str) => {
+            const { protocol, hostname, pathname } = new URL(str)
+            const url = protocol + '//' + hostname + pathname
+            urlmap[url] = urlmap[url] ? urlmap[url] + 1 : 1
+        })
+        const indexed = Object.keys(urlmap).map((key) => ({
+            url: key,
+            count: urlmap[key]
+        }))
+        const ordered = orderBy(indexed, (i) => i.count, 'desc')
+        return ordered[0].url
+    },
+
     obfuscate: function (str) {
         const chars = []
         for (var i = str.length - 1; i >= 0; i--) {
@@ -27,7 +47,7 @@ module.exports = {
     },
 
     pprint: function (obj) {
-        return JSON.stringify(obj, null, 2)
+        return `<pre><code>${JSON.stringify(obj, null, 2)}</code></pre>`
     },
 
     slice: function (arr, start, end) {

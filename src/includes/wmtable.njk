@@ -1,0 +1,14 @@
+<table class="table">
+{% for row in tabledata|slice(0, 5) %}
+    <tr>
+        <th scope="row">
+            <a href="{{ row.key }}" rel="noindex nofollow" class="u-truncate">{{ row.key }}</a>
+        </th>
+        <td><span class="u-color-likes">{% icon "like" %}</span> {{ row.count['like-of'] }} <span class="sr-only">Likes</span></td>
+        <td><span class="u-color-replies">{% icon "reply" %}</span> {{ row.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
+        <td><span class="u-color-reposts">{% icon "repost" %}</span> {{ row.count['repost-of'] }} <span class="sr-only">Reposts</span></td>
+        <td><span class="u-color-mentions">{% icon "mention" %}</span> {{ row.count['mention-of'] }} <span class="sr-only">Mentions</span></td>
+        <td><span class="u-color-bookmarks">{% icon "bookmark" %}</span> {{ row.count['bookmark-of'] }} <span class="sr-only">Bookmarks</span></td>
+    </tr>
+{% endfor %}
+</table>

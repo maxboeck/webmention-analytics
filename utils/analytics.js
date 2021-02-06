@@ -1,7 +1,6 @@
 const URL = require('url-parse')
 const { orderBy, groupBy } = require('lodash')
 const { DateTime } = require('luxon')
-const { handles } = require('../src/data/meta.json')
 
 const EMPTY_COUNT_DATA = {
     'like-of': 0,
@@ -17,7 +16,7 @@ function escapeRegExp(str) {
 
 function sortEntries(obj) {
     const list = Object.keys(obj).map((key) => ({
-        title: key,
+        key,
         ...obj[key]
     }))
     const getTotalCount = (entry) => {
@@ -25,8 +24,8 @@ function sortEntries(obj) {
             return sum + entry.count[type]
         }, 0)
     }
-    const getTitle = (entry) => entry.title
-    return orderBy(list, [getTotalCount, getTitle], ['desc', 'asc'])
+    const getKey = (entry) => entry.key
+    return orderBy(list, [getTotalCount, getKey], ['desc', 'asc'])
 }
 
 function makeTimeseries(range) {
@@ -57,51 +56,38 @@ function parseEntries(data, range) {
     const sources = {}
     const tweets = {}
     const timeseries = makeTimeseries(range)
+    const tweetRegex = new RegExp(`/status/(\\d+)`)
 
-    const handle = escapeRegExp(handles.twitter)
-    const tweetRegex = new RegExp(`/twitter/${handle}/(\\d+)/`)
-
-    const addToSources = (name, type, url) => {
-        if (!sources[name]) {
-            sources[name] = {
-                count: Object.assign({}, EMPTY_COUNT_DATA),
-                urls: []
-            }
-        }
-        if (!sources[name].urls.includes(url)) {
-            sources[name].urls.push(url)
-        }
-        if (typeof sources[name]['count'][type] === 'number') {
-            sources[name]['count'][type]++
-        } else {
-            sources[name]['count'][type] = 1
-        }
-    }
-
-    const addToTargets = (name, type, url) => {
-        if (!targets[name]) {
-            targets[name] = {
-                count: Object.assign({}, EMPTY_COUNT_DATA),
-                urls: []
-            }
-        }
-        if (!targets[name].urls.includes(url)) {
-            targets[name].urls.push(url)
-        }
-        if (typeof targets[name]['count'][type] === 'number') {
-            targets[name]['count'][type]++
-        } else {
-            targets[name]['count'][type] = 1
-        }
-    }
-
-    const addToCounts = (type) => {
+    const updateCounts = (type) => {
         if (typeof counts[type] === 'number') {
             counts[type] = counts[type] + 1
         }
     }
 
-    const addToTimeSeries = (timestamp, type) => {
+    const updateTableData = (table, key, wm) => {
+        const type = wm['wm-property']
+        if (typeof table !== 'object') {
+            return
+        }
+
+        if (!table[key]) {
+            const count = Object.assign({}, EMPTY_COUNT_DATA, {
+                [type]: 1
+            })
+            table[key] = {
+                count,
+                urls: [wm.url]
+            }
+        } else {
+            table[key]['count'][type]++
+        }
+
+        if (!table[key]['urls'].includes(wm.url)) {
+            table[key]['urls'].push(wm.url)
+        }
+    }
+
+    const updateTimeSeries = (timestamp, type) => {
         if (timestamp) {
             const day = parseInt(DateTime.fromISO(timestamp).toFormat('d'))
             const index = Object.keys(EMPTY_COUNT_DATA).findIndex(
@@ -116,20 +102,11 @@ function parseEntries(data, range) {
         }
     }
 
-    const addToTweets = (url, type) => {
-        const matches = url.match(tweetRegex)
+    const updateTweets = (wm) => {
+        const matches = wm.url.match(tweetRegex)
         if (matches && matches[1]) {
             const tweetId = matches[1]
-            if (tweets[tweetId]) {
-                tweets[tweetId]['count'][type]++
-            } else {
-                const initialCount = Object.assign({}, EMPTY_COUNT_DATA, {
-                    [type]: 1
-                })
-                tweets[tweetId] = {
-                    count: initialCount
-                }
-            }
+            updateTableData(tweets, tweetId, wm)
         }
     }
 
@@ -137,14 +114,15 @@ function parseEntries(data, range) {
         const source = new URL(wm['wm-source'])
         const target = new URL(wm['wm-target'])
         const type = wm['wm-property']
+        const timestamp = wm['wm-received']
 
-        addToCounts(type)
-        addToSources(source.hostname, type, wm['wm-source'])
-        addToTargets(target.pathname, type, wm['wm-source'])
-        addToTimeSeries(wm['wm-received'], type)
+        updateCounts(type)
+        updateTableData(sources, source.hostname, wm)
+        updateTableData(targets, target.pathname, wm)
+        updateTimeSeries(timestamp, type)
 
         if (source.hostname.includes('brid-gy')) {
-            addToTweets(source.pathname, type)
+            updateTweets(wm)
         }
     })
 
@@ -174,8 +152,8 @@ module.exports = function (webmentions) {
         const from = month.startOf('month').toISODate()
         const to = month.endOf('month').toISODate()
         const range = parseInt(month.endOf('month').toFormat('d'), 10)
-
         const data = parseEntries(grouped[slug], range)
+
         return {
             title,
             slug,

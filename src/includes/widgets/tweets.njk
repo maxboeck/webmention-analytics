@@ -2,10 +2,11 @@
     {% if report.data.tweets.length %}
         <h3 class="widget__title">Top Tweets</h3>
         <ol class="tweetlist">
-        {% for tweet in report.data.tweets|slice(0, 3) %}
+        {% for tweet in report.data.tweets|slice(0, 4) %}
+            {% set tweeturl = tweet.urls|commonURL %}
             <li class="tweetlist__item">
                 <blockquote class="twitter-tweet" data-theme="dark">
-                    <a href="https://twitter.com/{{ meta.handles.twitter }}/status/{{ tweet.title }}">{{ tweet.title }}</a>
+                    <a href="{{ tweeturl }}">{{ tweeturl }}</a>
                 </blockquote> 
             </li>
         {% endfor %}

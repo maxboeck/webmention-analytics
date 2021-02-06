@@ -19,11 +19,11 @@ layout: base
                 {% include "widgets/summary.njk" %}
             </div>
 
-            <div class="report__item">
+            <div class="report__item report__item--fullwidth">
                 {% include "widgets/sources.njk" %}
             </div>
 
-            <div class="report__item">
+            <div class="report__item report__item--fullwidth">
                 {% include "widgets/targets.njk" %}
             </div>
 
@@ -33,5 +33,5 @@ layout: base
         </div>
     </article>
 
-    {# <pre><code>{{ report.data.tweets|pprint|safe }}</code></pre> #}
+    {# {{ report.data.tweets|slice(0, 3)|pprint|safe }} #}
 </div>

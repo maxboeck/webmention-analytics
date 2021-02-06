@@ -1,6 +1,17 @@
 .table {
+    table-layout: fixed;
+
     td,
     th {
         padding: 0.125rem;
+    }
+
+    td {
+        width: 10%;
+    }
+    td:first-child,
+    th[scope='row'] {
+        width: 50%;
+        text-align: left;
     }
 }

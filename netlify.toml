@@ -17,8 +17,8 @@
         Referrer-Policy= "no-referrer-when-downgrade"
 
 # [[redirects]]
-#     from = "https://eleventastic.netlify.com/*"
-#     to = "https://eleventastic.dev/:splat"
+#     from = "https://webmention-analytics.netlify.app/*"
+#     to = "https://analytics.mxb.dev/:splat"
 #     status = 301
 #     force = true
 

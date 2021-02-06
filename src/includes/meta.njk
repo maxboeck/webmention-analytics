@@ -6,7 +6,7 @@
 
 {# Open Graph #}
 <meta property="og:site_name" content="{{ meta.title }}">
-<meta property="og:title" content="{{ title or meta.title }}">
+<meta property="og:title" content="{{ report.title or meta.title }}">
 <meta property="og:description" content="{{ description  or meta.description }}">
 <meta property="og:url" content="{{ absolutePageUrl }}">
 <meta property="og:locale" content="{{ meta.locale }}">
@@ -22,6 +22,3 @@
 <link rel="shortcut icon" href="{{ '/assets/images/favicon/favicon.ico' | url }}">
 <link rel="manifest" href="{{ '/site.webmanifest' | url }}">
 <meta name="theme-color" content="#1a1a1a">
-
-{# RSS Feed #}
-<link type="application/atom+xml" rel="alternate" href="{{ meta.url }}/feed.xml" title="{{ meta.title }}">

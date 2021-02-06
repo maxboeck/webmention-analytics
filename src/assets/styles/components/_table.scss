@@ -24,4 +24,13 @@
             background-color: rgba(0, 0, 0, 0.15);
         }
     }
+
+    &__panel {
+        ul {
+            padding-left: 1rem;
+        }
+        li + li {
+            margin-top: 0.125rem;
+        }
+    }
 }

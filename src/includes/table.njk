@@ -3,7 +3,7 @@
     <tr>
         <td>
             {% if row.urls.length > 1 %}
-                <details>
+                <details class="table__panel">
                     <summary>{{ row.key }}</summary>
                     <ul>
                         {% for url in row.urls|commonURLs %}

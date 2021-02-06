@@ -28,6 +28,9 @@ function generateBarChart(element, { labels, series }) {
     const options = {
         stackBars: true,
         height: 300,
+        axisY: {
+            onlyInteger: true
+        },
         plugins: [tooltip]
     }
     return new Chartist.Bar(element, data, options)

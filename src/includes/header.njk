@@ -10,8 +10,10 @@
             </div>
         </div>
         <div class="header__right">
-            {% set lastFetchedDate = webmentions.lastFetched|dateFromISO %}
-            Last Updated: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy - HH:mm") }}
+            <span class="u-color-muted">
+                {% set lastFetchedDate = webmentions.lastFetched|dateFromISO %}
+                Last Updated: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy - HH:mm") }}
+            </span>
         </div>
     </div>
 </header>

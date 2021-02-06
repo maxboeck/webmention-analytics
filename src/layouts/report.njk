@@ -5,8 +5,14 @@ layout: base
 <div class="container">
     <article class="report">
         <header class="report__header">
-            <h1 class="report__title">{{ report.title }}</h1>
-            <p class="report__time">{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
+            <a href="/" class="report__backlink">
+                <span class="sr-only">back to index</span>
+                {% icon "arrow-left" %}
+            </a>
+            <div>
+                <h1 class="report__title">{{ report.title }}</h1>
+                <p class="report__time">{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
+            </div>
         </header>
 
         <div class="report__content">

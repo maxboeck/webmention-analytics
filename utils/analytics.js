@@ -32,15 +32,16 @@ function sortEntries(obj) {
 function makeTimeseries(range) {
     const legend = Object.keys(EMPTY_COUNT_DATA)
     const labels = []
-    const series = []
     const initialValues = []
-
-    labels.length = range
-    series.length = legend.length
     initialValues.length = range
     initialValues.fill(0)
 
-    series.fill(initialValues)
+    const series = legend.map((key) => ({
+        name: key,
+        data: initialValues
+    }))
+
+    labels.length = range
     for (let i = 0; i < labels.length; i++) {
         labels[i] = i + 1
     }
@@ -96,10 +97,10 @@ function parseEntries(data, range) {
                 (t) => t === type
             )
 
-            const values = [...timeseries.series[index]]
+            const values = [...timeseries.series[index]['data']]
             if (index > -1 && day) {
                 values[day - 1]++
-                timeseries.series[index] = values
+                timeseries.series[index]['data'] = values
             }
         }
     }

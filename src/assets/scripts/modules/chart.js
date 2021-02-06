@@ -6,15 +6,31 @@ const SELECTORS = {
 }
 
 function generateBarChart(element, { labels, series }) {
+    const tooltipLabels = {
+        'like-of': 'Likes',
+        'in-reply-to': 'Replies',
+        'repost-of': 'Reposts',
+        'mention-of': 'Mentions',
+        'bookmark-of': 'Bookmarks'
+    }
     const tooltip = new Chartist.plugins.tooltip({
         anchorToPoint: true
     })
+    const data = {
+        labels,
+        series: series.map((s) => {
+            if (tooltipLabels[s.name]) {
+                s.name = tooltipLabels[s.name]
+            }
+            return s
+        })
+    }
     const options = {
         stackBars: true,
         height: 300,
         plugins: [tooltip]
     }
-    return new Chartist.Bar(element, { labels, series }, options)
+    return new Chartist.Bar(element, data, options)
 }
 
 const containers = document.querySelectorAll(SELECTORS.chartContainer)

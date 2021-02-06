@@ -8,12 +8,6 @@
     border-radius: 0.5rem;
     background-color: darken($gray-darkest, 5%);
 
-    &--tweets {
-        background-color: transparent;
-        padding: 0;
-        border: 0;
-    }
-
     &__title {
         padding-bottom: 0.5rem;
         margin-bottom: 1rem;

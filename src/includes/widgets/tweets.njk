@@ -1,6 +1,6 @@
 <div class="widget widget--tweets">
+    <h3 class="widget__title">Top Tweets</h3>
     {% if report.data.tweets.length %}
-        <h3 class="widget__title">Top Tweets</h3>
         <ol class="tweetlist">
         {% for tweet in report.data.tweets|slice(0, 4) %}
             {% set tweeturl = tweet.urls|commonURL %}

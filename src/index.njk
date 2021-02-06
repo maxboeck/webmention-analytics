@@ -4,10 +4,11 @@ layout: base
 
 {% set reports = webmentions.children|analytics %}
 <div class="container">
-    <ol reversed>
+    <ol class="reportlist" reversed>
     {% for report in reports %}
-        <li>
-            <h2><a href="/{{report.slug}}/">{{ report.title }}</a></h2>
+        <li class="reportlist__item">
+            <h2 class="reportlist__title"><a href="/{{report.slug}}/">{{ report.title }}</a></h2>
+            {% include "widgets/timeseries.njk" %}
             {% include "widgets/summary.njk" %}
         </li>
     {% endfor %}

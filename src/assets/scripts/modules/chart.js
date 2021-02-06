@@ -5,7 +5,6 @@ const SELECTORS = {
 }
 
 function generateBarChart(element, { labels, series }) {
-    console.log('generating barchart...', element, { series })
     const options = {
         stackBars: true,
         height: 300

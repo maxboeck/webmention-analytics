@@ -4,15 +4,29 @@ layout: base
 
 <div class="container">
     <article class="report">
-        <header class="report__header">
-            <a href="/" class="report__backlink">
-                <span class="sr-only">back to index</span>
-                {% icon "arrow-left" %}
-            </a>
-            <div>
+        <header class="report__banner">
+            <div class="report__header">
                 <h1 class="report__title">{{ report.title }}</h1>
                 <p class="report__time">{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
             </div>
+
+            {% if pagination.href.next %}
+                <a href="{{ pagination.href.next }}" rel="prev" class="report__dirlink">
+                    <span class="sr-only">previous report</span>
+                    {% icon "arrow-left" %}
+                </a>
+            {% else %}
+                <span class="report__dirlink report__dirlink--disabled" rel="prev"></span>
+            {% endif %}
+
+            {% if pagination.href.previous %}
+                <a href="{{ pagination.href.previous }}" rel="next" class="report__dirlink">
+                    <span class="sr-only">next report</span>
+                    {% icon "arrow-right" %}
+                </a>
+            {% else %}
+                <span class="report__dirlink report__dirlink--disabled" rel="next"></span>
+            {% endif %}
         </header>
 
         <div class="report__content">

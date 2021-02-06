@@ -1,0 +1,46 @@
+.webmention {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem 0 1rem 60px;
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        order: -1;
+        font-size: 0.875rem;
+
+        &__divider {
+            display: inline-block;
+            padding: 0 0.25rem;
+        }
+    }
+    &__content {
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    &__author {
+        font-size: 1rem;
+        color: inherit;
+
+        &__photo {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    &__pubdate {
+        opacity: 0.7;
+    }
+
+    a.u-mention,
+    a:empty {
+        display: none;
+    }
+}

@@ -1,6 +1,7 @@
 const { DateTime } = require('luxon')
 const URL = require('url-parse')
 const { orderBy } = require('lodash')
+const sanitizeHTML = require('sanitize-html')
 
 module.exports = {
     dateToFormat: function (date, format = 'dd.MM.yyyy') {
@@ -36,6 +37,29 @@ module.exports = {
         }))
         const ordered = orderBy(indexed, (i) => i.count, 'desc')
         return ordered.map((i) => i.url)
+    },
+
+    cleanWebmention: function (wm) {
+        const allowedHTML = {
+            allowedTags: ['b', 'i', 'em', 'strong', 'a'],
+            allowedAttributes: {
+                a: ['href']
+            }
+        }
+        const clean = (entry) => {
+            const { html, text } = entry.content
+            if (html) {
+                // really long html mentions, usually newsletters or compilations
+                entry.content.value =
+                    html.length > 2000
+                        ? `mentioned this in <a href="${entry['wm-source']}" rel="noindex nofollow">${entry['wm-source']}</a>`
+                        : sanitizeHTML(html, allowedHTML)
+            } else {
+                entry.content.value = sanitizeHTML(text, allowedHTML)
+            }
+            return entry
+        }
+        return clean(wm)
     },
 
     obfuscate: function (str) {

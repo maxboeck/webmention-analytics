@@ -113,7 +113,9 @@ function parseEntries(data, range) {
     }
 
     const flagAsSpam = (wm) => {
-        flagged.push(wm)
+        if (wm.content) {
+            flagged.push(wm)
+        }
     }
 
     data.forEach((wm) => {

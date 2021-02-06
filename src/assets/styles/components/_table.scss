@@ -3,15 +3,25 @@
 
     td,
     th {
+        font-weight: 400;
         padding: 0.125rem;
+        vertical-align: top;
     }
 
     td {
         width: 10%;
     }
+
     td:first-child,
     th[scope='row'] {
         width: 50%;
         text-align: left;
+    }
+
+    tbody tr:nth-child(odd) {
+        td,
+        th {
+            background-color: rgba(0, 0, 0, 0.15);
+        }
     }
 }

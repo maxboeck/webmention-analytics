@@ -20,9 +20,9 @@ module.exports = {
         return DateTime.fromISO(timestamp, { zone: 'utc' }).toJSDate()
     },
 
-    commonURL: function (urls) {
+    commonURLs: function (urls) {
         if (urls.length === 1) {
-            return urls[0]
+            return urls
         }
         const urlmap = {}
         urls.forEach((str) => {
@@ -35,7 +35,7 @@ module.exports = {
             count: urlmap[key]
         }))
         const ordered = orderBy(indexed, (i) => i.count, 'desc')
-        return ordered[0].url
+        return ordered.map((i) => i.url)
     },
 
     obfuscate: function (str) {

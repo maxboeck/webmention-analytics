@@ -3,7 +3,7 @@
     {% if report.data.tweets.length %}
         <ol class="tweetlist">
         {% for tweet in report.data.tweets|slice(0, 4) %}
-            {% set tweeturl = tweet.urls|commonURL %}
+            {% set tweeturl = tweet.urls|commonURLs|first %}
             <li class="tweetlist__item">
                 <blockquote class="twitter-tweet" data-theme="dark">
                     <a href="{{ tweeturl }}">{{ tweeturl }}</a>

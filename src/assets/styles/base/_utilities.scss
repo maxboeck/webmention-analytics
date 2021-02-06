@@ -46,6 +46,11 @@
 .u-align-right {
     text-align: right !important;
 }
+.u-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 // Display Utils
 

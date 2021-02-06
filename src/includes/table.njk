@@ -1,9 +1,22 @@
 <table class="table">
 {% for row in tabledata|slice(0, 5) %}
     <tr>
-        <th scope="row">
-            <a href="{{ row.key }}" rel="noindex nofollow" class="u-truncate">{{ row.key }}</a>
-        </th>
+        <td>
+            {% if row.urls.length > 1 %}
+                <details>
+                    <summary>{{ row.key }}</summary>
+                    <ul>
+                        {% for url in row.urls|commonURLs %}
+                        <li>
+                            <a href="{{ url }}" rel="noindex nofollow" class="u-truncate">{{ url }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </details>
+            {% else %}
+                <a href="{{ row.urls[0] }}" rel="noindex nofollow" class="u-truncate">{{ row.key }}</a>
+            {% endif %}
+        </td>
         <td><span class="u-color-likes">{% icon "like" %}</span> {{ row.count['like-of'] }} <span class="sr-only">Likes</span></td>
         <td><span class="u-color-replies">{% icon "reply" %}</span> {{ row.count['in-reply-to'] }} <span class="sr-only">Replies</span></td>
         <td><span class="u-color-reposts">{% icon "repost" %}</span> {{ row.count['repost-of'] }} <span class="sr-only">Reposts</span></td>

@@ -1,9 +1,5 @@
 .tweetlist {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-
-    @include mq(lg) {
-        grid-template-columns: 1fr 1fr;
+    &__item + &__item {
+        margin-top: 2rem;
     }
 }

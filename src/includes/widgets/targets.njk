@@ -2,7 +2,7 @@
     {% if report.data.targets.length %}
         <h3 class="widget__title">Top Targets</h3>
         {% set tabledata = report.data.targets %}
-        {% include "wmtable.njk" %}
+        {% include "table.njk" %}
     {% else %}
         <p>No targets found yet.</p>
     {% endif %}

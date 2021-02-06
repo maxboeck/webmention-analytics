@@ -2,7 +2,7 @@
     {% if report.data.sources.length %}
         <h3 class="widget__title">Top Sources</h3>
         {% set tabledata = report.data.sources %}
-        {% include "wmtable.njk" %}
+        {% include "table.njk" %}
     {% else %}
         <p>No sources found yet.</p>
     {% endif %}

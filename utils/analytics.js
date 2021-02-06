@@ -1,6 +1,7 @@
 const URL = require('url-parse')
 const { orderBy, groupBy } = require('lodash')
 const { DateTime } = require('luxon')
+const blocklist = require('../src/data/blocklist')
 
 const EMPTY_COUNT_DATA = {
     'like-of': 0,
@@ -55,6 +56,7 @@ function parseEntries(data, range) {
     const targets = {}
     const sources = {}
     const tweets = {}
+    const flagged = []
     const timeseries = makeTimeseries(range)
     const tweetRegex = new RegExp(`/status/(\\d+)`)
 
@@ -110,6 +112,10 @@ function parseEntries(data, range) {
         }
     }
 
+    const flagAsSpam = (wm) => {
+        flagged.push(wm)
+    }
+
     data.forEach((wm) => {
         const source = new URL(wm['wm-source'])
         const target = new URL(wm['wm-target'])
@@ -121,8 +127,11 @@ function parseEntries(data, range) {
         updateTableData(targets, target.pathname, wm)
         updateTimeSeries(timestamp, type)
 
-        if (source.hostname.includes('brid-gy')) {
+        if (wm.url.includes('twitter.com')) {
             updateTweets(wm)
+        }
+        if (blocklist.some((str) => wm.url.includes(str))) {
+            flagAsSpam(wm)
         }
     })
 
@@ -131,6 +140,7 @@ function parseEntries(data, range) {
         sources: sortEntries(sources),
         targets: sortEntries(targets),
         tweets: sortEntries(tweets),
+        flagged,
         timeseries
     }
 }

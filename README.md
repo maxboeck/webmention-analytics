@@ -1,57 +1,50 @@
-# Eleventastic
+# Webmention Analytics
 
-A simple Eleventy Starter Kit, my base for all new 11ty projects. ([Demo Site](https://eleventastic.netlify.com))
+An analytics dashboard for webmention.io data.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f78ec52d-8328-4e40-b6da-a0f9164e80d1/deploy-status)](https://app.netlify.com/sites/eleventastic/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/758f580e-b9ec-44f6-a23d-1176389c989a/deploy-status)](https://app.netlify.com/sites/webmention-analytics/deploys)  
 
 ## Features
 
-* CSS Pipeline (Sass, CleanCSS)
-* JS Bundling (Webpack)
-* SVG Icon Sprite Generation
-* Critical CSS
-* HTML Minification
-* No external builds, everything runs through 11ty
+* Group data by month
+* Overview of incoming webmentions by day
+* Support for 5 types of webmentions (likes, replies, reposts, mentions, bookmarks)
+* Top sources sending webmentions to your site
+* Top targets on your site receiving webmentions
+* Top tweets generating webmentions through brid.gy
+* Webmentions flagged as spam (domains on a blocklist)
+* Automatic daily updates
 
-## Getting Started
+## Get your own instance
 
-To install the necessary packages, run this command in the root folder of the site:
+Things you may need:
 
-```sh
-npm install
-```
+* a Github account
+* a Netlify account
+* a site registered on [webmention.io](https://webmention.io)
+* backfeed of Twitter via [brid.gy](https://brid.gy) (optional)
 
-### Commands
+The easiest way to get started is to fork this repo and deploy it to a new Netlify site:
 
-* Run `npm start` for a development server and live reloading
-* Run `npm run build` to generate a production build
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/maxboeck/webmention-analytics) 
 
-## Deploy a fork of this template to Netlify
+### 1. Edit Settings
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/maxboeck/eleventastic)
+Open `src/data/meta.json` and edit it to fit your site. Adjust the `url` to the URL of your Netlify deployment and the `domain` to match the domain of your webmention.io account.
 
-## CSS
+### 2. Set Webmention Token
 
-Styling works with Sass. The main index file is in `src/assets/styles/main.scss`. Import any SCSS code you want in there; it will be processed and optimized. The output is in `dist/assets/styles/main.css`
+To fetch webmention.io data, you need to [set a new environment variable](https://docs.netlify.com/configure-builds/environment-variables/) called `WEBMENTION_IO_TOKEN` in your Netlify site admin. You can find this token on your webmention.io [settings page](https://webmention.io/settings) under "API Key".
 
-## JS
+### 3. Configure Build Hook
 
-Javascript can be written in ES6 syntax. The main index file is in `src/assets/scripts/main.js`. It will be transpiled to ES5 with babel, bundled together with webpack, and minified in production. The output is in `dist/assets/scripts/main.js`
+You can configure Github to periodically trigger a new build of the dashboard, fetching up-to-date webmention data. First, set up a new [Netlify Build Hook](https://docs.netlify.com/configure-builds/build-hooks/) in your site admin. It will look something like this:
 
-## SVG Icons
+`https://api.netlify.com/build_hooks/12345f83c31475e31000`
 
-All SVG files added to `src/assets/icons` will be bundled into a `symbol` sprite file. The SVG filename will then be used as the symbol identifier and the icon can be used as a shortcode.
+Copy it to your clipboard. Then go to your forked repository's settings page and add it as a new [repository secret](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) called `NETLIFY_CRON_BUILD_HOOK`.
 
-For example, if you have a `github.svg` file in that folder, you can display it anywhere by using `{% icon "github" %}` in your templates.
 
-## Critical CSS
 
-Currently, critical CSS will only be inlined in the head of the homepage. This is done by using the [critical](https://github.com/addyosmani/critical) package in an automatic transform.
 
-## Credits
 
-My heartfelt thanks to these people, whom I shamelessly copied ideas from:
-
-* Phil Hawksworth: [EleventyOne](https://github.com/philhawksworth/eleventyone)
-* Mike Riethmuller: [Supermaya](https://github.com/MadeByMike/supermaya)
-* Zach Leatherman: [zachleat.com](https://github.com/zachleat/zachleat.com)

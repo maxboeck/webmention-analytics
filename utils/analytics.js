@@ -11,6 +11,10 @@ const EMPTY_COUNT_DATA = {
     'bookmark-of': 0
 }
 
+function isKnownType(type) {
+    return Object.keys(EMPTY_COUNT_DATA).includes(type)
+}
+
 function escapeRegExp(str) {
     return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
 }
@@ -69,6 +73,13 @@ function parseEntries(data, range) {
 
     const updateTableData = (table, key, wm) => {
         const type = wm['wm-property']
+
+        if (!isKnownType(type)) {
+            return
+        }
+        if (!key) {
+            return
+        }
         if (typeof table !== 'object') {
             return
         }
@@ -77,10 +88,7 @@ function parseEntries(data, range) {
             const count = Object.assign({}, EMPTY_COUNT_DATA, {
                 [type]: 1
             })
-            table[key] = {
-                count,
-                urls: [wm.url]
-            }
+            table[key] = { count, urls: [wm.url] }
         } else {
             table[key]['count'][type]++
         }
@@ -91,14 +99,14 @@ function parseEntries(data, range) {
     }
 
     const updateTimeSeries = (timestamp, type) => {
-        if (timestamp) {
+        if (timestamp && isKnownType(type)) {
             const day = parseInt(DateTime.fromISO(timestamp).toFormat('d'))
             const index = Object.keys(EMPTY_COUNT_DATA).findIndex(
                 (t) => t === type
             )
 
-            if (index > -1 && day) {
-                const values = [...timeseries.series[index]['data']]
+            if (timeseries.series[index] && day) {
+                let values = [...timeseries.series[index]['data']]
                 values[day - 1]++
                 timeseries.series[index]['data'] = values
             }

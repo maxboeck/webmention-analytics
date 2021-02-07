@@ -2,9 +2,11 @@
     padding: $spacing-y 0;
 
     &__inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include mq(md) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
     &__logo,

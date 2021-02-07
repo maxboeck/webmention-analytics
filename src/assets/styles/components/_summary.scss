@@ -13,4 +13,12 @@
     .icon {
         margin-right: 0.25rem;
     }
+
+    @include mq-down(md) {
+        tbody td {
+            display: block;
+            width: 100% !important;
+            text-align: left;
+        }
+    }
 }

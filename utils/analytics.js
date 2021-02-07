@@ -97,8 +97,8 @@ function parseEntries(data, range) {
                 (t) => t === type
             )
 
-            const values = [...timeseries.series[index]['data']]
             if (index > -1 && day) {
+                const values = [...timeseries.series[index]['data']]
                 values[day - 1]++
                 timeseries.series[index]['data'] = values
             }

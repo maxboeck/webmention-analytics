@@ -15,10 +15,6 @@ function isKnownType(type) {
     return Object.keys(EMPTY_COUNT_DATA).includes(type)
 }
 
-function escapeRegExp(str) {
-    return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
-}
-
 function sortEntries(obj) {
     const list = Object.keys(obj).map((key) => ({
         key,
@@ -135,12 +131,12 @@ function parseEntries(data, range) {
     }
 
     data.forEach((wm) => {
-        const source = new URL(wm['wm-source'])
+        const source = new URL(wm['url'])
         const target = new URL(wm['wm-target'])
         const type = wm['wm-property']
         const timestamp = wm['wm-received']
         const blockedDomain = BLOCKLIST.find((domain) =>
-            wm.url.includes(domain)
+            wm['url'].includes(domain)
         )
 
         updateCounts(type)
@@ -148,7 +144,7 @@ function parseEntries(data, range) {
         updateTableData(targets, target.pathname, wm)
         updateTimeSeries(timestamp, type)
 
-        if (wm.url.includes('twitter.com')) {
+        if (wm['url'].includes('twitter.com')) {
             updateTweets(wm)
         }
         if (blockedDomain) {

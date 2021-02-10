@@ -19,6 +19,10 @@
             display: block;
             width: 100% !important;
             text-align: left;
+
+            &:first-child {
+                margin-bottom: 1rem;
+            }
         }
     }
 }

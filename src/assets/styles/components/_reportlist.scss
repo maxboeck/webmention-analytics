@@ -8,8 +8,19 @@
         margin-bottom: 2rem;
     }
 
-    &__title {
+    &__meta {
         margin-bottom: 1rem;
+        color: $gray;
+
+        @include mq(md) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        color: #fff;
         a {
             text-decoration: none;
         }

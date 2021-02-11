@@ -13,13 +13,15 @@ module.exports = {
                 <script type="application/json" id="chart-data-${id}">${json}</script>`
     },
 
-    sparkline: function (report) {
-        const now = DateTime.utc()
-        const endDate = DateTime.fromISO(report.to, { zone: 'utc' })
+    sparkline: function (report, lastFetched) {
         let daysOffset = 0
+        const lastFetchDate = DateTime.fromISO(lastFetched, { zone: 'utc' })
+        const endDate = DateTime.fromISO(report.slug, { zone: 'utc' }).endOf(
+            'month'
+        )
 
-        if (endDate > now) {
-            const diff = endDate.diff(now, ['days']).toObject()
+        if (endDate > lastFetchDate) {
+            const diff = endDate.diff(lastFetchDate, ['days']).toObject()
             daysOffset = Math.ceil(diff.days)
         }
 
@@ -37,6 +39,7 @@ module.exports = {
             }
             totals.push(sum)
         }
+
         const csv = totals.join(',')
         return `<div class="sparkline js-sparkline" data-values="${csv}"><canvas width="150" height="30"></canvas></div>`
     }

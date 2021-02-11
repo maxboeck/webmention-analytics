@@ -12,7 +12,7 @@ layout: base
                 <h2 class="reportlist__title"><a href="/{{report.slug}}/">{{ report.title }}</a></h2>
                 <p>{{ report.from|dateFromISO|dateToFormat }} &ndash; {{ report.to|dateFromISO|dateToFormat }}</p>
             </div>
-            {% sparkline report %}
+            {% sparkline report, webmentions.lastFetched %}
             {% include "widgets/summary.njk" %}
         </li>
     {% endfor %}

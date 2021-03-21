@@ -172,10 +172,13 @@ function groupByMonth(data) {
 }
 
 module.exports = function (webmentions) {
-    const grouped = groupByMonth(webmentions)
     const now = DateTime.utc()
+    const grouped = groupByMonth(webmentions)
+    const slugs = Object.keys(grouped).sort((a, b) => {
+        return a > b ? -1 : a < b ? 1 : 0
+    })
 
-    const dataByMonth = Object.keys(grouped).map((slug) => {
+    const dataByMonth = slugs.map((slug) => {
         const month = DateTime.fromISO(slug)
         const title = month.toFormat('MMMM yyyy')
         const from = month.startOf('month').toISODate()

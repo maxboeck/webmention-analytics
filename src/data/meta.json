@@ -1,8 +1,8 @@
 {
     "title": "Webmention Analytics",
     "description": "Webmention Analytics Dashboard",
-    "url": "https://analytics.mxb.dev",
-    "domain": "mxb.dev",
+    "url": "https://analytics-varun-ca.netlify.app/",
+    "domain": "varun.ca",
     "lang": "en",
     "locale": "en_us"
 }

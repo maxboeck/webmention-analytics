@@ -1,7 +1,7 @@
 {
     "title": "Webmention Analytics",
     "description": "Webmention Analytics Dashboard",
-    "url": "https://analytics.mxb.dev",
+    "url": "https://webmentions.mxb.dev",
     "domain": "mxb.dev",
     "lang": "en",
     "locale": "en_us"

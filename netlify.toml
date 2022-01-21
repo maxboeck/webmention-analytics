@@ -16,11 +16,11 @@
         X-Content-Type-Options = "nosniff"
         Referrer-Policy= "no-referrer-when-downgrade"
 
-# [[redirects]]
-#     from = "https://webmention-analytics.netlify.app/*"
-#     to = "https://analytics.mxb.dev/:splat"
-#     status = 301
-#     force = true
+[[redirects]]
+    from = "https://webmention-analytics.netlify.app/*"
+    to = "https://webmentions.mxb.dev/:splat"
+    status = 301
+    force = true
 
 [[redirects]]
     from = "*"

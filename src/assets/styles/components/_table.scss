@@ -15,6 +15,13 @@
         .icon {
             margin-right: 0.25rem;
         }
+
+        a {
+            white-space: unset;
+            overflow-wrap: break-word;
+            word-wrap: break-word; 
+            word-break: break-word;
+        }
     }
 
     td:first-child,

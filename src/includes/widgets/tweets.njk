@@ -5,7 +5,7 @@
         {% for tweet in report.data.tweets|slice(0, 4) %}
             {% set tweeturl = tweet.urls|commonURLs|first %}
             <li class="tweetlist__item">
-                <blockquote class="twitter-tweet" data-theme="dark">
+                <blockquote class="twitter-tweet" data-theme="{{ meta.theme }}">
                     <a href="{{ tweeturl }}">{{ tweeturl }}</a>
                 </blockquote> 
             </li>

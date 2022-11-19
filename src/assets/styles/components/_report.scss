@@ -47,6 +47,7 @@
     &__item {
         display: flex;
         flex-direction: column;
+        min-width: 100%;
 
         &--fullwidth {
             grid-column: 1 / -1;

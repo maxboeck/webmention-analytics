@@ -1,0 +1,51 @@
+.reportlist {
+    &__item {
+        position: relative;
+        padding: 1rem;
+        border: 1px solid $border-color-contrast;
+        border-radius: 0.5rem;
+        background-color: $bg-color-contrast;
+        margin-bottom: 2rem;
+    }
+
+    &__meta {
+        margin-bottom: 1rem;
+        color: $meta-color;
+
+        @include mq(md) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__title {
+        color: $text-color;
+        a {
+            text-decoration: none;
+        }
+        a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    .widget {
+        background-color: transparent;
+        padding: 0;
+        border: 0;
+
+        &__title {
+            display: none;
+        }
+
+        &--timeseries {
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+    }
+}

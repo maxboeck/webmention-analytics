@@ -1,0 +1,16 @@
+.widget {
+    // display: flex;
+    // flex-direction: column;
+    // flex: 1 0 auto;
+
+    padding: 1rem;
+    border: 1px solid darken($gray-darkest, 7%);
+    border-radius: 0.5rem;
+    background-color: darken($gray-darkest, 5%);
+
+    &__title {
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $gray-darkest;
+    }
+}

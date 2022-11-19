@@ -1,0 +1,41 @@
+.table {
+    table-layout: fixed;
+    width: 100%;
+
+    td,
+    th {
+        font-weight: 400;
+        padding: 0.125rem;
+        vertical-align: top;
+    }
+
+    td {
+        width: 10%;
+
+        .icon {
+            margin-right: 0.25rem;
+        }
+    }
+
+    td:first-child,
+    th[scope='row'] {
+        width: 50%;
+        text-align: left;
+    }
+
+    tbody tr:nth-child(odd) {
+        td,
+        th {
+            background-color: $bg-color-cell;
+        }
+    }
+
+    &__panel {
+        ul {
+            padding-left: 1rem;
+        }
+        li + li {
+            margin-top: 0.125rem;
+        }
+    }
+}

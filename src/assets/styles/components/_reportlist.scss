@@ -2,15 +2,15 @@
     &__item {
         position: relative;
         padding: 1rem;
-        border: 1px solid darken($gray-darkest, 7%);
-        border-radius: 0.5rem;
-        background-color: darken($gray-darkest, 5%);
+        border: 1px solid $border-color-contrast;
+        border-radius: $border-radius;
+        background-color: $bg-color-contrast;
         margin-bottom: 2rem;
     }
 
     &__meta {
         margin-bottom: 1rem;
-        color: $gray;
+        color: $meta-color;
 
         @include mq(md) {
             display: flex;
@@ -20,7 +20,7 @@
     }
 
     &__title {
-        color: #fff;
+        color: $text-color;
         a {
             text-decoration: none;
         }

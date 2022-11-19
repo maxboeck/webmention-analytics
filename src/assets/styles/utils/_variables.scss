@@ -26,24 +26,38 @@ $z-layers: (
 
 // Colors
 //
-// Grayscale.
+// Brand Colors
+
+$brand-blue: #00bff8;
+
+// Dark Theme
 
 $gray-darkest: #2e3440;
 $gray-dark: #55595c;
 $gray: #818a91;
 $gray-light: #eceeef;
 $gray-lightest: #e6e9ee;
-
-// Brand Colors
-
-$brand-blue: #00bff8;
+$gray-opaque: rgba(0, 0, 0, 0.15);
+$color-likes: #dc3977;
+$color-replies: #f0746e;
+$color-reposts: #7ccba2;
+$color-mentions: #00bff8;
+$color-bookmarks: #7c1d6f;
+$tooltip-bg-color: #f4c63d;
 
 // Color Mappings
 
 $bg-color: $gray-darkest;
+$bg-color-contrast: darken($bg-color, 5%);
+$border-color: $gray-darkest;
+$border-color-contrast: darken($border-color, 7%);
 $text-color: $gray-lightest;
+$meta-color: $gray;
+$line-color: rgba($text-color, 0.45);
 $brand-color-primary: $brand-blue;
 $brand-color-primary-offset: darken($brand-blue, 6%);
+$bg-color-cell: $gray-opaque;
+$tooltip-color: $gray-darkest;
 
 // Typography
 //
@@ -79,10 +93,4 @@ $spacing-y: 2rem;
 
 $box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
 $box-shadow-elevated: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
-$border-radius: 0.25rem;
-
-$color-likes: #dc3977;
-$color-replies: #f0746e;
-$color-reposts: #7ccba2;
-$color-mentions: #00bff8;
-$color-bookmarks: #7c1d6f;
+$border-radius: 0.5rem;

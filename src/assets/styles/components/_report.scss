@@ -21,7 +21,7 @@
         height: 3rem;
         padding: 0.5rem;
         border-radius: 50%;
-        background-color: darken($gray-darkest, 5%);
+        background-color: $bg-color-contrast;
 
         &--disabled {
             visibility: hidden;

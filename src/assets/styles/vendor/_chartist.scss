@@ -1,5 +1,5 @@
-$ct-grid-color: rgba($gray-lightest, 0.45) !default;
-$ct-text-color: $gray-lightest;
+$ct-grid-color: $line-color !default;
+$ct-text-color: $text-color;
 
 $ct-series-colors: (
     $color-likes,
@@ -36,8 +36,8 @@ $ct-series-colors: (
     opacity: 0;
     min-width: 5em;
     padding: 0.5em;
-    background: #f4c63d;
-    color: $gray-darkest;
+    background: $tooltip-bg-color;
+    color: $tooltip-color;
     font-family: Oxygen, Helvetica, Arial, sans-serif;
     font-weight: 700;
     text-align: center;
@@ -57,7 +57,7 @@ $ct-series-colors: (
     height: 0;
     margin-left: -15px;
     border: 15px solid transparent;
-    border-top-color: #f4c63d;
+    border-top-color: $tooltip-bg-color;
 }
 .chartist-tooltip.tooltip-show {
     opacity: 1;

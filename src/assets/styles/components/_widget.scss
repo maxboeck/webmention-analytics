@@ -4,13 +4,13 @@
     // flex: 1 0 auto;
 
     padding: 1rem;
-    border: 1px solid darken($gray-darkest, 7%);
-    border-radius: 0.5rem;
-    background-color: darken($gray-darkest, 5%);
+    border: 1px solid $border-color-contrast;
+    border-radius: $border-radius;
+    background-color: $bg-color-contrast;
 
     &__title {
         padding-bottom: 0.5rem;
         margin-bottom: 1rem;
-        border-bottom: 1px solid $gray-darkest;
+        border-bottom: 1px solid $border-color;
     }
 }

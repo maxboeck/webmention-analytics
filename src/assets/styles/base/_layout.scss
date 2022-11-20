@@ -4,6 +4,10 @@ body {
     overflow-x: hidden;
 }
 
+body * {
+    transition: background-color 0.3s $animation-curve-default;
+}
+
 .layout {
     display: flex;
     flex-direction: column;

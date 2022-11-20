@@ -26,24 +26,46 @@ $z-layers: (
 
 // Colors
 //
-// Grayscale.
-
-$gray-darkest: #2e3440;
-$gray-dark: #55595c;
-$gray: #818a91;
-$gray-light: #eceeef;
-$gray-lightest: #e6e9ee;
-
 // Brand Colors
 
 $brand-blue: #00bff8;
+$brand-blue-contrast: darken($brand-blue, 6%);
 
-// Color Mappings
+// Theme Colors
 
-$bg-color: $gray-darkest;
-$text-color: $gray-lightest;
-$brand-color-primary: $brand-blue;
-$brand-color-primary-offset: darken($brand-blue, 6%);
+$gray-darkest: #2e3440;
+$gray-darkest-contrast: darken($gray-darkest, 6%);
+$gray-darkest-opaque: rgba($gray-darkest, 0.45);
+$gray-dark: #55595c;
+$gray: #818a91;
+$gray-opaque: rgba(0, 0, 0, 0.15);
+$gray-light: #eceeef;
+$gray-lightest: #f2f2f2;
+$gray-lightest-contrast: darken($gray-lightest, 6%);
+$gray-lightest-contrast-reverse: lighten($gray-lightest, 6%);
+$gray-lightest-opaque: rgba($gray-lightest, 0.45);
+
+
+$color-likes: #dc3977;
+$color-replies: #f0746e;
+$color-reposts: #7ccba2;
+$color-mentions: #00bff8;
+$color-bookmarks: #7c1d6f;
+$tooltip-bg-color: #f4c63d;
+
+// Global Theme Color Mappings
+
+$bg-color: var(--bg-color);
+$bg-color-contrast: var(--bg-color-contrast);
+$border-color: var(--border-color);
+$border-color-contrast: var(--border-color-contrast);
+$text-color: var(--text-color);
+$meta-color: var(--meta-color);
+$line-color: var(--line-color);
+$brand-color-primary: var(--brand-color-primary);
+$brand-color-primary-offset: var(--brand-color-primary-offset);
+$bg-color-cell: var(--bg-color-cell);
+$tooltip-color: var(--tooltip-color);
 
 // Typography
 //
@@ -81,8 +103,3 @@ $box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
 $box-shadow-elevated: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 $border-radius: 0.25rem;
 
-$color-likes: #dc3977;
-$color-replies: #f0746e;
-$color-reposts: #7ccba2;
-$color-mentions: #00bff8;
-$color-bookmarks: #7c1d6f;

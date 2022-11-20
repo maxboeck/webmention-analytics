@@ -1,0 +1,13 @@
+.theme-light {
+    --brand-color-primary: #{$brand-blue};
+    --brand-color-primary-offset: #{$brand-blue-contrast};
+    --bg-color: #{$gray-lightest};
+    --bg-color-contrast: #{$gray-lightest-contrast-reverse};
+    --border-color: #{$gray-lightest};
+    --border-color-contrast: #{$gray-lightest-contrast-reverse};
+    --text-color: #{$gray-darkest};
+    --meta-color: #{$gray};
+    --line-color: #{$gray-darkest-opaque};
+    --bg-color-cell: #{$gray-lightest};
+    --tooltip-color: #{$gray-darkest};
+}

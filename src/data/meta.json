@@ -4,5 +4,6 @@
     "url": "https://webmentions.mxb.dev",
     "domain": "mxb.dev",
     "lang": "en",
-    "locale": "en_us"
+    "locale": "en_us",
+    "theme": "dark"
 }

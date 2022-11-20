@@ -21,7 +21,7 @@
         height: 3rem;
         padding: 0.5rem;
         border-radius: 50%;
-        background-color: $bg-color-contrast;
+        background-color: darken($bg-color, 5%);
 
         &--disabled {
             visibility: hidden;
@@ -47,7 +47,6 @@
     &__item {
         display: flex;
         flex-direction: column;
-        min-width: 100%;
 
         &--fullwidth {
             grid-column: 1 / -1;

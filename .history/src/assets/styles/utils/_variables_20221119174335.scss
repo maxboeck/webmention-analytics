@@ -38,12 +38,6 @@ $gray: #818a91;
 $gray-light: #eceeef;
 $gray-lightest: #e6e9ee;
 $gray-opaque: rgba(0, 0, 0, 0.15);
-$color-likes: #dc3977;
-$color-replies: #f0746e;
-$color-reposts: #7ccba2;
-$color-mentions: #00bff8;
-$color-bookmarks: #7c1d6f;
-$tooltip-bg-color: #f4c63d;
 
 // Color Mappings
 
@@ -57,6 +51,14 @@ $line-color: rgba($text-color, 0.45);
 $brand-color-primary: $brand-blue;
 $brand-color-primary-offset: darken($brand-blue, 6%);
 $bg-color-cell: $gray-opaque;
+
+$color-likes: #dc3977;
+$color-replies: #f0746e;
+$color-reposts: #7ccba2;
+$color-mentions: #00bff8;
+$color-bookmarks: #7c1d6f;
+
+$tooltip-bg-color: #f4c63d;
 $tooltip-color: $gray-darkest;
 
 // Typography

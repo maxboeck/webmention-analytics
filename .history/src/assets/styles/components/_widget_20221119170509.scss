@@ -4,9 +4,9 @@
     // flex: 1 0 auto;
 
     padding: 1rem;
-    border: 1px solid $border-color-contrast;
-    border-radius: $border-radius;
-    background-color: $bg-color-contrast;
+    border: 1px solid darken($border-color, 7%);
+    border-radius: 0.5rem;
+    background-color: darken($bg-color, 5%);
 
     &__title {
         padding-bottom: 0.5rem;

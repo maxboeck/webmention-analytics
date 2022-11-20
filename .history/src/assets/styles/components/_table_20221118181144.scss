@@ -15,13 +15,6 @@
         .icon {
             margin-right: 0.25rem;
         }
-
-        a {
-            white-space: unset;
-            overflow-wrap: break-word;
-            word-wrap: break-word; 
-            word-break: break-word;
-        }
     }
 
     td:first-child,
@@ -33,7 +26,7 @@
     tbody tr:nth-child(odd) {
         td,
         th {
-            background-color: $bg-color-cell;
+            background-color: rgba(0, 0, 0, 0.15);
         }
     }
 

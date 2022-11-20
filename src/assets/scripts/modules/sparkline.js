@@ -50,15 +50,27 @@ function drawSparkline(canvasElement, data, endpoint, color, style) {
     }
 }
 
-const containers = document.querySelectorAll(SELECTORS.sparkline)
-if (containers) {
-    containers.forEach((container) => {
-        const canvas = container.querySelector('canvas')
-        const values = container.dataset.values
-
-        if (canvas && values) {
-            const data = values.split(',').map((i) => parseInt(i, 10))
-            drawSparkline(canvas, data, true, '#FFF')
-        }
-    })
+function getColor() {
+    let lineColor = getComputedStyle(document.body).getPropertyValue('--line-color');
+    console.log(lineColor);
+    return lineColor;
 }
+
+function drawSparklines() {
+    const containers = document.querySelectorAll(SELECTORS.sparkline)
+    if (containers) {
+        containers.forEach((container) => {
+            const canvas = container.querySelector('canvas')
+            const values = container.dataset.values
+    
+            if (canvas && values) {
+                const data = values.split(',').map((i) => parseInt(i, 10))
+                drawSparkline(canvas, data, true, getColor())
+            }
+        })
+    }
+}
+
+window.addEventListener('load', function() {
+    drawSparklines();
+});

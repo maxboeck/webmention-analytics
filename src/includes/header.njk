@@ -14,6 +14,8 @@
                 {% set lastFetchedDate = webmentions.lastFetched|dateFromISO %}
                 Last Updated: {{ lastFetchedDate|dateToFormat("cccc, dd.MM.yyyy - HH:mm") }}
             </span>
+            <a href="#dark" class="set-theme set-theme-light">{% icon "moon" %}</a>
+            <a href="#light" class="set-theme set-theme-dark">{% icon "sun" %}</a>
         </div>
     </div>
 </header>
